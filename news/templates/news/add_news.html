@@ -10,9 +10,58 @@
 
 {% block content %}
     <h3>Добавить новость</h3>
+    {% comment %}
     <form action="{% url 'add_news' %}" method="post">
-    {% csrf_token %}
-        {{ form.as_p }}
+        {% csrf_token %}
+
+        {#        {{ form.as_p }}#}
+        {{ form.non_field_errors }}
+        <div class="mb-3">
+            {{ form.title }}
+            <div id="titleHelp" class="form-text">Введите название новости</div>
+            <div class="invalid-feedback">
+                {{ form.title.errors }}
+            </div>
+        </div>
+        <div class="mb-3">
+            {{ form.content }}
+            <div id="contentHelp" class="form-text">Напишите новость</div>
+            <div class="invalid-feedback">
+                {{ form.content.errors }}
+            </div>
+        </div>
+        <div class="mb-3 form-check">
+            {{ form.is_published }}
+            <label for="{{ form.is_published.id_for_label }}" class="form-check-label">Опубликовать?</label>
+            <div class="invalid-feedback">
+                {{ form.is_published.errors }}
+            </div>
+        </div>
+
+        <div class="mb-3">
+            {{ form.category }}
+            <div id="contentHelp" class="form-text">Выберите категорию</div>
+            <div class="invalid-feedback">
+                {{ form.category.errors }}
+            </div>
+        </div>
+
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary">Добавить</button>
+        </div>
+    </form>
+    {% endcomment %}
+    <form action="{% url 'add_news' %}" method="post">
+        {% for field in form %}
+            <div>
+                {{ field.label_tag }}
+                {{ field }}
+                <div class="invalid-feedback">
+                    {{ field.errors }}
+                </div>
+            </div>
+        {% endfor %}
         <div class="d-grid gap-2">
             <button type="submit" class="btn btn-primary">Добавить</button>
         </div>
