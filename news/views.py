@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import News, Category
-from .forms import NewsForm, NewsForm2
+from .forms import NewsForm2
 
 
 def index(request):
@@ -32,7 +32,7 @@ def add_news(request):
         form = NewsForm2(request.POST)
         if form.is_valid():
             news = form.save()
-        return redirect(news)
+            return redirect(news)
     else:
         form = NewsForm2()
         return render(request, 'news/add_news.html', {'form': form})

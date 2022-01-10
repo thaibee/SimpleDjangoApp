@@ -1,5 +1,5 @@
 from django.db import models
-from django.urls import reverse
+from django.urls import reverse_lazy
 
 
 class News(models.Model):
@@ -12,7 +12,7 @@ class News(models.Model):
     category = models.ForeignKey('Category', on_delete=models.PROTECT)
 
     def get_absolute_url(self):
-        return reverse('news_view', kwargs={"news_id": self.pk})
+        return reverse_lazy('news_view', kwargs={"news_id": self.pk})
 
     def __str__(self):
         return self.title
@@ -27,7 +27,7 @@ class Category(models.Model):
     title = models.CharField(max_length=150, db_index=True, verbose_name='Категория')
 
     def get_absolute_url(self):
-        return reverse('category', kwargs={"category_id": self.pk})
+        return reverse_lazy('category', kwargs={"category_id": self.pk})
 
     def __str__(self):
         return self.title
