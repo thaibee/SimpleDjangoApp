@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .models import News, Category
 from .forms import NewsForm2
@@ -54,9 +54,15 @@ class NewsByCategory(ListView):
 #     return render(request, 'news/category.html', context)
 
 
-def news_view(request, news_id):
-    news = get_object_or_404(News, pk=news_id)
-    return render(request, 'news/news_view.html', {"news": news})
+class NewsView(DetailView):
+    model = News
+    template_name = 'news/news_view.html'
+    context_object_name = 'news'
+
+
+# def news_view(request, news_id):
+#     news = get_object_or_404(News, pk=news_id)
+#     return render(request, 'news/news_view.html', {"news": news})
 
 
 def add_news(request):
