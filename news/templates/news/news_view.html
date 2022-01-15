@@ -5,31 +5,28 @@
 {% endblock %}
 
 {% block sidebar %}
-{% include 'inc/_sidebar.html' %}
+    {% include 'inc/_sidebar.html' %}
 {% endblock %}
 
 {% block content %}
-        <div class="card mb-3">
-            <div class="card-header">
-               {{ news.category }}
-            </div>
-            <div class="card-body">
-                <div class="d-flex">
-                    <div class="flex-shrink-0">
-                        {% if news.photo %}
-                            <img src="{{ news.photo.url }}" width="300" alt="" class="mr-3">
-                        {% else %}
-                            <img src="https://picsum.photos/300/200.webp?random={{ forloop.counter }}" alt="">
-                        {% endif %}
-                    </div>
-                    <div class="flex-grow-1 ms-3">
-                        <h5 class="card-title">{{ news.title }}</h5>
-                        <p class="card-text">{{ news.content|linebreaks }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer text-muted">
-                {{ news.created_at|date:"Y-m-d H:i:s" }}
-            </div>
+    <div class="card mb-3">
+        <div class="card-header">
+            {{ news.category }}
         </div>
+        <div class="card-body">
+            {% if news.photo %}
+                <img src="{{ news.photo.url }}" width="300" alt="" class="float-start pe-3">
+            {% else %}
+                <img src="https://picsum.photos/300/200.webp?random={{ forloop.counter }}" alt=""
+                     class="float-start pe-3">
+            {% endif %}
+
+            <h5 class="card-title">{{ news.title }}</h5>
+            <p class="card-text">{{ news.content|linebreaks }}</p>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        {{ news.created_at|date:"Y-m-d H:i:s" }}
+    </div>
+    </div>
 {% endblock %}
