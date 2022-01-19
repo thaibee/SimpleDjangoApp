@@ -1,0 +1,9 @@
+#header{
+    background: #0f5132;
+}
+#branding h1, #branding h1 a:link, #branding h1 a:visited {
+    color: #ffffff;
+}
+.module h2, .module caption, .inline-group h2 {
+    background: #0f5132;
+}

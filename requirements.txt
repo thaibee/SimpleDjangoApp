@@ -1,5 +1,6 @@
 asgiref==3.4.1
 Django==4.0.1
+django-debug-toolbar==3.2.4
 mssql-django==1.1.1
 Pillow==9.0.0
 pyodbc @ file:///C:/Users/admin/PycharmProjects/SimpleDjangoApp/pyodbc-4.0.32-cp310-cp310-win_amd64.whl
