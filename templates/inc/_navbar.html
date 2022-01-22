@@ -11,12 +11,15 @@
                     <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Новости</a>
                 </li>
                 {% if request.user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'add_news' %}">Добавить новость</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'add_news' %}">Добавить новость</a>
+                    </li>
                 {% endif %}
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'admin:index' %}">Админка</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'test' %}">Test paginator</a>
                 </li>
             </ul>
         </div>
