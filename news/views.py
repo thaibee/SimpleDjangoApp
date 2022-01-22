@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView
 from .models import News, Category
@@ -7,11 +8,21 @@ from django.urls import reverse_lazy
 from .utils import MyMixin
 
 
+def test_paginator(request):
+    test_list = ['1asdf', '2gasd', '3asgsag', '4asdg', '5sga', '6asgd', '7sadg', '8sag', '9sg']
+    paginator = Paginator(test_list, 2)
+    page_num = request.GET.get('page')
+    page_obj = paginator.get_page(page_num)
+    return render(request, 'news/test_paginator.html', {'page_obj': page_obj})
+
+
 class HomeNews(MyMixin, ListView):
     model = News
     template_name = 'news/index.html'
     context_object_name = 'news'
     mixin_prop = 'Hello world'
+    paginate_by = 2
+
     # extra_context = {'title': 'Главная'}
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -50,7 +61,6 @@ class CreateNews(LoginRequiredMixin, CreateView):
     login_url = '/admin/'
     redirect_field_name = None
     # success_url = reverse_lazy('home')
-
 
 # def index(request):
 #     news = News.objects.all()

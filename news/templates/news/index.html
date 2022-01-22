@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block sidebar %}
-{% include 'inc/_sidebar.html' %}
+    {% include 'inc/_sidebar.html' %}
 {% endblock %}
 
 {% block content %}
@@ -36,4 +36,18 @@
             </div>
         </div>
     {% endfor %}
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+            {% if page_obj.has_previous %}
+            <li class="page-item "><a class="page-link text-black" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+            {% endif %}
+            {%  for i in paginator.page_range %}
+            <li class="page-item"><a class="page-link text-black" href="?page={{ i }}">{{ i }}</a></li>
+            {% endfor %}
+            {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link text-black" href="?page={{ page_obj.number }}">Next</a></li>
+            {% endif %}
+        </ul>
+    </nav>
 {% endblock %}

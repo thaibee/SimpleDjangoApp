@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Проверка функции пагинатора
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+    {%  for i in page_obj %}
+        {{ i }} <br>
+    {% endfor %}
+
+{% endblock %}
