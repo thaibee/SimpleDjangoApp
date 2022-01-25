@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
@@ -14,7 +15,10 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('news/home')
+            messages.success(request, 'Пользователь зарегистрирован')
+            return redirect('login')
+        else:
+            messages.error(request, 'Ошибка регистрации')
     else:
         form = UserCreationForm()
     return render(request, 'news/register.html', {'form': form})
