@@ -1,7 +1,7 @@
 from django.forms import Form, CharField, BooleanField, ModelChoiceField, ModelForm, TextInput, Textarea, Select, \
     CheckboxInput, ValidationError, EmailInput, PasswordInput
 from .models import News, Category
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 import re
 
@@ -15,6 +15,11 @@ class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
+
+
+class UserLoginForm(AuthenticationForm):
+    username = CharField(label='Имя пользователя', widget=TextInput(attrs={"class": "form-control"}))
+    password = CharField(label='Пароль', widget=PasswordInput(attrs={"class": "form-control"}))
 
 
 class NewsForm(Form):

@@ -23,9 +23,17 @@
                 </li>
             </ul>
         </div>
-    <div class="navbar-text">
-        <a class="text-decoration-none" href="{% url 'register' %}">Регистрация</a> | <a class="text-decoration-none" href="{% url 'login' %}">Логин</a>
-      </div>
+        {% if request.user.is_authenticated %}
+            <div class="navbar-text">
+            Добро пожалововать, {{ user.username }} | <a
+                class="text-decoration-none" href="{% url 'logout' %}">Выход</a>
+        </div>
+        {% else %}
+            <div class="navbar-text">
+                <a class="text-decoration-none" href="{% url 'register' %}">Регистрация</a> | <a
+                    class="text-decoration-none" href="{% url 'login' %}">Логин</a>
+            </div>
+        {% endif %}
     </div>
 
 </nav>
